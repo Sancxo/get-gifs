@@ -7,7 +7,6 @@ const TrendingGifs = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [data, setData] = useState([]);
 
-    // Data is separated from the useEffect hook to refetch the data /w "refresh" button
     const getData = () => {
         fetch(routes.getTop20)
         .then(res => res.json())

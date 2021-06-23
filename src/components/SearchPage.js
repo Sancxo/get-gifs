@@ -16,12 +16,12 @@ const SearchPage = () => {
         .then(res => res.json())
         .then(
             (result) => {
-                setIsLoaded(true);
                 setData(result.data);
+                setIsLoaded(true);
             },
             (error) => {
-                setIsLoaded(true);
                 setError(error);
+                setIsLoaded(true);
             }
         )
     }, [query])

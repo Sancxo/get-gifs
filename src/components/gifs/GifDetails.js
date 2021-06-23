@@ -10,23 +10,25 @@ const GifDetails = ({element, open, handleClose}) => {
 
     return (
         <Dialog open={ open } onClose={ handleClose }>
-            <div id="dialog-head" className="d-flex justify-content-between">
-                <DialogTitle>{ element.title }</DialogTitle>
-                <DialogActions>
-                    <button style={{ border: 'none', background: 'none' }} onClick={ handleClose }>X</button>
-                </DialogActions>
+            <div id="dialog-ctn">
+                <div id="dialog-head" className="d-flex justify-content-between">
+                    <DialogTitle>{ element.title }</DialogTitle>
+                    <DialogActions>
+                        <button style={{ border: 'none', background: 'none' }} onClick={ handleClose }>X</button>
+                    </DialogActions>
+                </div>
+                <DialogContent id="dialog-body">
+                    <DialogContentText className="d-flex flex-column align-items-center">
+                        <img src={ element.images.original.url }  alt='Gif' className="mb-3"/>
+                        <ul className="list-unstyled d-flex flex-column align-items-center flex-wrap">
+                            <li className="text-center"><a href={ element.url }>{ element.url }</a></li>
+                            <li>Rating : { element.rating }</li>
+                            <li>Creator : { user }</li>
+                            <li>{ source }</li>
+                        </ul>
+                    </DialogContentText>
+                </DialogContent>
             </div>
-            <DialogContent id="dialog-body">
-                <DialogContentText className="d-flex flex-column align-items-center">
-                    <img src={ element.images.original.url }  alt='Gif' className="mb-3"/>
-                    <ul className="list-unstyled d-flex flex-column align-items-center flex-wrap">
-                        <li className="text-center"><a href={ element.url }>{ element.url }</a></li>
-                        <li>Rating : { element.rating }</li>
-                        <li>Creator : { user }</li>
-                        <li>{ source }</li>
-                    </ul>
-                </DialogContentText>
-            </DialogContent>
         </Dialog>
     )
 }

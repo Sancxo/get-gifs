@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 const SearchBar = () => {
     // SPA search
@@ -9,15 +9,11 @@ const SearchBar = () => {
         e.preventDefault();
     };
 
-    // const onRandom = () => {
-    //     history.push("/random");
-    // }
-
     return (
         <form type="search" className="w-25 my-3 d-flex" onSubmit={onSubmit}>
             <input id="query" name="query" className="form-control flex-shrink-0" placeholder="Search for Gifs ..." />
             <input type="submit" value="Go for Gifs" className="btn btn-secondary mx-1" />
-            {/* <input type="button" value="Get Lucky" className="btn btn-secondary" onSubmit={onRandom} /> */}
+            <Link className="btn btn-secondary text-nowrap" to="/random">Get Lucky</Link>
         </form>
     )
 }

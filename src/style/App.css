@@ -14,16 +14,25 @@
   margin-bottom: 1rem;
 }
 
+a {
+  color: #61dafb;
+}
+
+.card {
+  box-sizing: content-box !important;
+}
+
+
+/* Dark Mode Styles */
 .darkMode, .darkMode #dialog-head, .darkMode #dialog-body, .darkMode .card {
   background-color: #000;
 }
 .darkMode, .darkMode li, .darkMode button, .darkMode h2 {
   color: #fff;
 }
-.darkMode .card {
-  border: solid 1px #fff !important;
+.darkMode .card, .darkMode #dialog-ctn {
+  border: solid 2px #fff !important;
 }
-
-a {
-  color: #61dafb;
+.darkMode .MuiPaper-root {
+  box-shadow: 0px 11px 15px -7px rgb(255 255 255 / 20%), 0px 24px 38px 3px rgb(255 255 255 / 14%), 0px 9px 46px 8px rgb(255 255 255 / 12%);
 }

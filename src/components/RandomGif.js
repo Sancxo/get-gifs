@@ -37,7 +37,7 @@ const RandomGif = () => {
                 <button className="btn btn-secondary mb-3" onClick={ getData }>Refresh Gifs</button>
 
                 <div className="d-flex justify-content-center mt-3">
-                    <div className="card" style={{width: '18rem', boxSizing: 'content-box !important'}}>
+                    <div className="card" style={{width: '18rem'}}>
                         <ul className="list-unstyled d-flex flex-wrap justify-content-center" >
                             <Gif element={ data } key={ data.id } /> 
                         </ul>

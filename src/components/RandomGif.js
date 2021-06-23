@@ -36,6 +36,7 @@ const RandomGif = () => {
                 {/* Refresh Button */}
                 <button className="btn btn-secondary mb-3" onClick={ getData }>Refresh Gifs</button>
 
+                {/* Bootstrap Card */}
                 <div className="d-flex justify-content-center mt-3">
                     <div className="card" style={{width: '18rem'}}>
                         <ul className="list-unstyled d-flex flex-wrap justify-content-center" >

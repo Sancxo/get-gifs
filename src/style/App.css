@@ -18,6 +18,7 @@ a {
   color: #61dafb;
 }
 
+/* Bootstrap Card */
 .card {
   box-sizing: content-box !important;
 }

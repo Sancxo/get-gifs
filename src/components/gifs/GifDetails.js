@@ -9,6 +9,7 @@ const GifDetails = ({element, open, handleClose}) => {
     const source = element.source ? <a href={element.source} target="_blank" rel="noreferrer noopener">Source</a> : "No source available."
 
     return (
+        // Material UI Dialog Box
         <Dialog open={ open } onClose={ handleClose }>
             <div id="dialog-ctn">
                 <div id="dialog-head" className="d-flex justify-content-between">

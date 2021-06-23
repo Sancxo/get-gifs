@@ -3,7 +3,7 @@ import Gif from "./gifs/Gif";
 import routes from "../routes";
 
 const SearchPage = () => {
-
+    // Fetch Data
     const {search} = window.location;
     const query = new URLSearchParams(search).get('query');
 
@@ -25,6 +25,7 @@ const SearchPage = () => {
             }
         )
     }, [query])
+    // End of Fetch
 
     if(error) {
         return <div>Erreur : { error.message }</div>;

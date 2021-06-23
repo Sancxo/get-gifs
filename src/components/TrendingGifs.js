@@ -3,6 +3,7 @@ import Gif from "./gifs/Gif";
 import routes from "../routes";
 
 const TrendingGifs = () => {
+    // Fetch Data
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [data, setData] = useState([]);
@@ -25,6 +26,7 @@ const TrendingGifs = () => {
     useEffect(() => {
         getData();
     }, [])
+    // End of Fetch
 
     if(error) {
         return <div>Erreur : { error.message }</div>;
@@ -36,6 +38,7 @@ const TrendingGifs = () => {
                 {/* Refresh Button */}
                 <button className="btn btn-secondary mb-3" onClick={ getData }>Refresh Gifs</button>
 
+                {/* List of Top20 Gifs */}
                 <ul className="list-unstyled d-flex flex-wrap justify-content-center">
                     { data.map(element => (
                         <Gif element={ element } key={ element.id } />

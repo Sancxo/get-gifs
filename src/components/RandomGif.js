@@ -3,6 +3,7 @@ import routes from "../routes";
 import Gif from "./gifs/Gif";
 
 const RandomGif = () => {
+    // Fetch Data
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [data, setData] = useState([]);
@@ -25,6 +26,7 @@ const RandomGif = () => {
     useEffect(() => {
         getData();
     }, [])
+    // End of Fetch
 
     if(error) {
         return <div>Erreur : { error.message }</div>;

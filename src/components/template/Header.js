@@ -31,13 +31,17 @@ const Header = () => {
 
     return (
         <header className="App-header">
+
+            {/* DarkMode Switch */}
             <div id="dark-mode-switch" className="form-check form-switch fs-6 align-self-end me-3">
                 <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onClick={() => setDarkMode(!darkMode)}/>
                 <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Light/Dark mode</label>
             </div>
+
             <h1>Get Gifs.</h1>
             <Link to="/" className="fs-5">Home</Link>
             <SearchBar />
+            
       </header>
     )
 }

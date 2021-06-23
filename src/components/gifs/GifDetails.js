@@ -5,6 +5,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 
 const GifDetails = ({element, open, handleClose}) => {
+    // If some elements are not availables
     const user = element.username ? element.username : "Anonym";
     const source = element.source ? <a href={element.source} target="_blank" rel="noreferrer noopener">Source</a> : "No source available."
 
@@ -12,12 +13,16 @@ const GifDetails = ({element, open, handleClose}) => {
         // Material UI Dialog Box
         <Dialog open={ open } onClose={ handleClose }>
             <div id="dialog-ctn">
+
+                {/* Head */}
                 <div id="dialog-head" className="d-flex justify-content-between">
                     <DialogTitle>{ element.title }</DialogTitle>
                     <DialogActions>
                         <button style={{ border: 'none', background: 'none' }} onClick={ handleClose }>X</button>
                     </DialogActions>
                 </div>
+
+                {/* Body */}
                 <DialogContent id="dialog-body">
                     <DialogContentText className="d-flex flex-column align-items-center">
                         <img src={ element.images.original.url }  alt='Gif' className="mb-3"/>
@@ -29,6 +34,7 @@ const GifDetails = ({element, open, handleClose}) => {
                         </ul>
                     </DialogContentText>
                 </DialogContent>
+                
             </div>
         </Dialog>
     )

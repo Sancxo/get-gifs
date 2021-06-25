@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Gif from "./gifs/Gif";
 import routes from "../routes";
+import React from "react";
 
 const TrendingGifs = () => {
     // Fetch Data
@@ -34,7 +35,7 @@ const TrendingGifs = () => {
         return <div>Loading ...</div>
     } else {
         return (
-            <div>
+            <React.Fragment>
                 {/* Refresh Button */}
                 <button className="btn btn-secondary mb-3" onClick={ getData }>Refresh Gifs</button>
 
@@ -44,7 +45,8 @@ const TrendingGifs = () => {
                         <Gif element={ element } key={ element.id } />
                     )) }
                 </ul>
-            </div>
+
+            </React.Fragment>
         )
     }
 

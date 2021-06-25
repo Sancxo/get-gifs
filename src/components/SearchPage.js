@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Gif from "./gifs/Gif";
 import routes from "../routes";
+import React from "react";
 
 const SearchPage = () => {
+    let gifList = []; 
+    let displayedGifs = [];
+
     // Fetch Data
     const {search} = window.location;
     const query = new URLSearchParams(search).get('query');
@@ -10,8 +14,9 @@ const SearchPage = () => {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [data, setData] = useState([]);
+    const [gifNumber, setGifNumber] = useState(20);
 
-    useEffect(() => {
+    const getData = useCallback(() => {
         fetch(routes.getSearch(query))
         .then(res => res.json())
         .then(
@@ -24,8 +29,30 @@ const SearchPage = () => {
                 setIsLoaded(true);
             }
         )
+        .then(setGifNumber(20))
     }, [query])
+
+    data.forEach((element, index) => {
+        gifList.push(element);
+        if(index < gifNumber) {
+            displayedGifs.push(element);
+        }
+    });
+    if(gifNumber > 40) {
+        document.getElementById('more-btn').setAttribute('disabled', true);
+    } else {
+        document.getElementById('more-btn').removeAttribute('disabled');
+    };
+
+    useEffect(() => {
+        getData();
+    }, [getData]);
     // End of Fetch
+
+    const onClick = () => {
+        setGifNumber(gifNumber + 20);
+        // getData(); // ne pas refetch 
+    }
 
     if(error) {
         return <div>Erreur : { error.message }</div>;
@@ -33,11 +60,16 @@ const SearchPage = () => {
         return <div>Loading ...</div>
     } else {
         return (
-            <ul className="list-unstyled d-flex flex-wrap justify-content-center">
-                {data.map(element => (
-                    <Gif element={ element } key={ element.id } />
-                ))}
-            </ul>
+            <React.Fragment>
+                <ul className="list-unstyled d-flex flex-wrap justify-content-center">
+                    {displayedGifs.map(element => (
+                        <Gif element={ element } key={ element.id } />
+                    ))}
+                </ul>
+
+                {/* More Button */}
+                <button className="btn btn-secondary mt-3" id="more-btn" onClick={ onClick } >Get More Gifs</button>
+            </React.Fragment>
         )
     }
 }

@@ -28,6 +28,9 @@ const RandomGif = () => {
     }, [])
     // End of Fetch
 
+    const gifTitle = data.title ? data.title : "Untitled";
+    const user = data.username ? data.username : "Anonym";
+
     if(error) {
         return <div>Erreur : { error.message }</div>;
     } else if (!isLoaded) {
@@ -36,7 +39,7 @@ const RandomGif = () => {
         return (
             <div>
                 {/* Refresh Button */}
-                <button className="btn btn-secondary mb-3" onClick={ getData }>Refresh Gifs</button>
+                <button className="btn btn-secondary mb-3" onClick={ getData }>Another one, please.</button>
 
                 {/* Bootstrap Card */}
                 <div className="d-flex justify-content-center mt-3">
@@ -45,8 +48,8 @@ const RandomGif = () => {
                             <Gif element={ data } key={ data.id } /> 
                         </ul>
                         <div className="card-body">
-                            <h5 className="card-title">{data.title}</h5>
-                            <p className="card-text">{data.username}</p>
+                            <h5 className="card-title">{ gifTitle }</h5>
+                            <p className="card-text">{ user }</p>
                         </div>
                     </div>
                 </div>

@@ -14,8 +14,16 @@
   margin-bottom: 1rem;
 }
 
-a {
+a:not(header a):hover {
+  color: cadetblue;
+  transition: color 500ms;
+}
+header a, .darkMode a:not(form a) {
   color: #61dafb;
+  transition: color 500ms;
+}
+header a:hover, .darkMode a:not(form a):hover {
+  color: gold;
 }
 
 /* Bootstrap Card */
@@ -23,6 +31,14 @@ a {
   box-sizing: content-box !important;
 }
 
+#avatar {
+  height: 3rem;
+  width: 3rem;
+  transition: transform 400ms ease-out;
+}
+#avatar:hover {
+  transform: scale(1.1);
+}
 
 /* Dark Mode Styles */
 .darkMode, .darkMode #dialog-head, .darkMode #dialog-body, .darkMode .card {

@@ -4,13 +4,12 @@ import routes from "../routes";
 import React from "react";
 
 const SearchPage = () => {
-    let gifList = []; 
     let displayedGifs = [];
 
-    // Fetch Data
     const {search} = window.location;
     const query = new URLSearchParams(search).get('query');
 
+    // Fetch Data
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [data, setData] = useState([]);
@@ -33,16 +32,18 @@ const SearchPage = () => {
     }, [query])
 
     data.forEach((element, index) => {
-        gifList.push(element);
         if(index < gifNumber) {
             displayedGifs.push(element);
         }
     });
+    
     if(gifNumber > 40) {
-        document.getElementById('more-btn').setAttribute('disabled', true);
+        document.getElementById('search-more-btn').setAttribute('disabled', true);
     } else {
-        document.getElementById('more-btn').removeAttribute('disabled');
-    };
+        if (document.getElementById('search-more-btn')) {
+            document.getElementById('search-more-btn').removeAttribute('disabled');
+        }
+    }
 
     useEffect(() => {
         getData();
@@ -51,7 +52,6 @@ const SearchPage = () => {
 
     const onClick = () => {
         setGifNumber(gifNumber + 20);
-        // getData(); // ne pas refetch 
     }
 
     if(error) {
@@ -61,14 +61,14 @@ const SearchPage = () => {
     } else {
         return (
             <React.Fragment>
-                <ul className="list-unstyled d-flex flex-wrap justify-content-center">
+                <ul className="list-unstyled d-flex flex-wrap justify-content-center mx-5 px-5">
                     {displayedGifs.map(element => (
                         <Gif element={ element } key={ element.id } />
                     ))}
                 </ul>
 
                 {/* More Button */}
-                <button className="btn btn-secondary mt-3" id="more-btn" onClick={ onClick } >Get More Gifs</button>
+                <button className="btn btn-secondary mt-3" id="search-more-btn" onClick={ onClick } disabled={false}>Get More Gifs</button>
             </React.Fragment>
         )
     }

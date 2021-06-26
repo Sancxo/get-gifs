@@ -40,9 +40,9 @@ const GifDetails = ({element, open, handleClose}) => {
                 {/* Body */}
                 <DialogContent id="dialog-body">
                     <DialogContentText className="d-flex flex-column align-items-center">
-                        <img src={ element.images.original.url }  alt='Gif' className="mb-3"/>
+                        <a href={ element.url } target="_blank" rel="noreferrer noopener"><img src={ element.images.original.url }  alt='Gif' className="mb-3"/></a>
                         <ul className="list-unstyled d-flex flex-column align-items-center flex-wrap">
-                            <li className="text-center"><a href={ element.url }>{ element.url }</a></li>
+                            <li className="text-center"><a href={ element.url } target="_blank" rel="noreferrer noopener">{ element.url }</a></li>
                             <li>Rating : { element.rating }</li>
                             <li>Creator : { user }</li>
                             <li>{ source }</li>

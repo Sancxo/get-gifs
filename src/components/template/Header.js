@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
 const Header = ({title}) => {
-   console.log({title});
-
     // Dark mode functionnality
     const [darkMode, setDarkMode] = useState(false);
 

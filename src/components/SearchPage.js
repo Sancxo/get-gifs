@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import Gif from "./gifs/Gif";
 import routes from "../routes";
 import React from "react";
+import GoUpButton from "./GoUpButton";
 
 const SearchPage = () => {
     // Fetch Data
@@ -69,7 +70,9 @@ const SearchPage = () => {
                 </ul>
 
                 {/* More Button */}
-                <button className="btn btn-secondary mt-3" id="fetch-new-set" onClick={ fetchMore } hidden={false}>Still want more ?</button>
+                <button className="btn btn-secondary my-3" id="fetch-new-set" onClick={ fetchMore } hidden={false}>Still want more ?</button>
+
+                <GoUpButton />
             </React.Fragment>
         )
     }

@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState, useEffect } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import '../style/App.css';
@@ -10,28 +10,25 @@ const RandomGif = lazy(() => import('./RandomGif'));
 
 function App() {
   const [title, setTitle] = useState('Top Gifs.');
-  const [pathname, setPathname] = useState(window.location.pathname);
+  // const [pathname, setPathname] = useState(window.location.pathname);
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   // console.log(title);
+  //   console.log(pathname);
 
-    // window.onpopstate = console.log(History);
-    setPathname(window.location.pathname);
-
-    switch (pathname) {
-      case "/search":
-        setTitle('Looking for Gifs ?');
-        break;
-      case "/random":
-        setTitle("Lust for Gifs !");
-        break;
-      default:
-        setTitle('Top Gifs.');
-        break;
+  //   switch (pathname) {
+  //     case "/search":
+  //       setTitle('Looking for Gifs ?');
+  //       break;
+  //     case "/random":
+  //       setTitle("Lust for Gifs !");
+  //       break;
+  //     default:
+  //       setTitle('Top Gifs.');
+  //       break;
       
-    };
-    console.log(title);
-    console.log(pathname);
-  }, [pathname, title])
+  //   };
+  // }, [pathname])
 
   return (
     <div className="App">

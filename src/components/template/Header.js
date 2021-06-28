@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
-const Header = ({title}) => {
+const Header = () => {
     // Dark mode functionnality
     const [darkMode, setDarkMode] = useState(false);
 
     useEffect(() => {
+        // We check in local storage if the user has selected Dark Mode or not
         const json = localStorage.getItem("go-dark-mode");
         const currentMode = JSON.parse(json);
         if(currentMode) {
@@ -24,6 +25,7 @@ const Header = ({title}) => {
         } else {
         document.body.classList.remove("darkMode");
         }
+        // We write in local storage the user's choice about Dark Mode
         const json = JSON.stringify(darkMode);
         localStorage.setItem("go-dark-mode", json);
     }, [darkMode])
@@ -38,12 +40,12 @@ const Header = ({title}) => {
                 <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Light/Dark mode</label>
             </div>
 
+            {/* Header */}
             <h1>Get Gifs.</h1>
-            <h4>{title}</h4>
             <Link to="/" className="fs-5">Home</Link>
             <SearchBar />
             
-      </header>
+        </header>
     )
 }
 

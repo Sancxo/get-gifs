@@ -6,8 +6,7 @@ import GoUpButton from "./GoUpButton";
 
 const SearchPage = () => {
     // Fetch Data
-    
-    // search variables
+    // We get the query from the url
     const {search} = window.location;
     const query = new URLSearchParams(search).get('query');
     const [previousQuery, setPreviousQuery] = useState('');
@@ -23,6 +22,8 @@ const SearchPage = () => {
         .then(res => res.json())
         .then(
             (res) => {
+                // We put the value previously fetched + the new ones to prevent "data" having only the newest fetched gifs,
+                // so we can make an infinite scroll
                 setData(previousData => ([...previousData, ...res.data]));
                 setIsLoaded(true);
             },
@@ -32,19 +33,21 @@ const SearchPage = () => {
             }
         )
         .then(setPreviousQuery(query))
-        .then(setOffset(newOffset + 50))
+        .then(setOffset(newOffset))
     }, [query, setData]);
 
     // fetch new pages
     const fetchMore = () => {
         let newOffset = offset + 50;
+        
+        console.log(newOffset)
         getData(newOffset);
     };
 
-    // Check if there is a new search to reinit the data array to avoid render old results
+    // Check if there is a new search initiated to reinit the 'data' array and avoid render old results
     // Check also if there is a refresh in navigator to avoid duplication of the same results.
     useEffect(() => {
-        if(previousQuery !== query || PerformanceNavigation.TYPE_RELOAD) {
+        if(previousQuery !== query || PerformanceNavigation.TYPE_RELOAD) { // WARNING : Performance Navigation API is deprecated, see PerformanceNavigationTiming.type instead (but still experimental)
             setData([]);
         }
     }, [setData, previousQuery, query])

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 const GoUpButton = () => {
+    // We display the button only if the user is not on top of the page
     useEffect(() => {
         window.addEventListener('scroll', () => {
             document.getElementById("go-up-btn").removeAttribute("hidden");
@@ -10,6 +11,7 @@ const GoUpButton = () => {
         })
     });
 
+    // "behavior: 'smooth'" not working on Chrome, but working on Firefox
     const goTop = () => {
         window.scrollTo({top: 0, left: 0, behavior: "smooth" });
     };

@@ -9,6 +9,7 @@ const Gif = ({element}) => {
 
     return(
         <div>
+            
             {/* Gif Image */}
             <button key={ element.id } style={{ border: 'none', background: 'none' }} onClick={ handleOpen }>
                 <li><img src={ element.images.original.url } alt='Gif' key={ element.id } style={{ width: '18rem', height: '18rem', objectFit: 'cover'}} /></li>

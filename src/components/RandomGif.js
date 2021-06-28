@@ -28,6 +28,7 @@ const RandomGif = () => {
     }, [])
     // End of Fetch
 
+    // If some elements are not availables
     const gifTitle = data.title ? data.title : "Untitled";
     const user = data.username ? data.username : "Anonym";
 

@@ -4,55 +4,56 @@ import routes from "../routes";
 import React from "react";
 
 const SearchPage = () => {
-    let displayedGifs = [];
-
+    // Fetch Data
+    
+    // search variables
     const {search} = window.location;
     const query = new URLSearchParams(search).get('query');
+    const [previousQuery, setPreviousQuery] = useState('');
 
-    // Fetch Data
+    // fetch variables
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [data, setData] = useState([]);
-    const [gifNumber, setGifNumber] = useState(20);
+    const [offset, setOffset] = useState(0);
 
-    const getData = useCallback(() => {
-        fetch(routes.getSearch(query))
+    const getData = useCallback((newOffset) => {
+        fetch(routes.getSearch(query, newOffset))
         .then(res => res.json())
         .then(
-            (result) => {
-                setData(result.data);
+            (res) => {
+                setData(previousData => ([...previousData, ...res.data]));
                 setIsLoaded(true);
             },
-            (error) => {
-                setError(error);
+            (err) => {
+                setError(err);
                 setIsLoaded(true);
             }
         )
-        .then(setGifNumber(20))
-    }, [query])
+        .then(setPreviousQuery(query))
+        .then(setOffset(newOffset + 50))
+    }, [query, setData]);
 
-    data.forEach((element, index) => {
-        if(index < gifNumber) {
-            displayedGifs.push(element);
-        }
-    });
-    
-    if(gifNumber > 40) {
-        document.getElementById('search-more-btn').setAttribute('disabled', true);
-    } else {
-        if (document.getElementById('search-more-btn')) {
-            document.getElementById('search-more-btn').removeAttribute('disabled');
-        }
-    }
+    // fetch new pages
+    const fetchMore = () => {
+        let newOffset = offset + 50;
+        getData(newOffset);
+    };
 
+    // Check if there is a new search to reinit the data array to avoid render old results
+    // Check also if there is a refresh in navigator to avoid duplication of the same results.
     useEffect(() => {
-        getData();
-    }, [getData]);
-    // End of Fetch
+        if(previousQuery !== query || PerformanceNavigation.TYPE_RELOAD) {
+            setData([]);
+        }
+    }, [setData, previousQuery, query])
 
-    const onClick = () => {
-        setGifNumber(gifNumber + 20);
-    }
+    //first fetch
+    useEffect(() => {
+        getData(0);
+    }, [getData]);
+
+    // End of Fetch
 
     if(error) {
         return <div>Erreur : { error.message }</div>;
@@ -62,13 +63,13 @@ const SearchPage = () => {
         return (
             <React.Fragment>
                 <ul className="list-unstyled d-flex flex-wrap justify-content-center mx-5 px-5">
-                    {displayedGifs.map(element => (
+                    {data.map(element => (
                         <Gif element={ element } key={ element.id } />
                     ))}
                 </ul>
 
                 {/* More Button */}
-                <button className="btn btn-secondary mt-3" id="search-more-btn" onClick={ onClick } disabled={false}>Get More Gifs</button>
+                <button className="btn btn-secondary mt-3" id="fetch-new-set" onClick={ fetchMore } hidden={false}>Still want more ?</button>
             </React.Fragment>
         )
     }

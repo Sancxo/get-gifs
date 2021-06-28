@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
-const Header = () => {
+const Header = ({title}) => {
+   console.log({title});
+
     // Dark mode functionnality
     const [darkMode, setDarkMode] = useState(false);
 
@@ -39,6 +41,7 @@ const Header = () => {
             </div>
 
             <h1>Get Gifs.</h1>
+            <h4>{title}</h4>
             <Link to="/" className="fs-5">Home</Link>
             <SearchBar />
             

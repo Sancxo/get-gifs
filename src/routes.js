@@ -1,6 +1,5 @@
 /* API routes to fetch different stuff */
 
-//Clé à supprimer du code !
 const key = "7CnQwmmmyzdPxKtpT93N9IIm4Q17rBLs";
 
 const routes =  {

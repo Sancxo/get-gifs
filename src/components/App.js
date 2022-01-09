@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
 
-      <Router>
+      <Router basename='/get-gifs'>
         <Header />
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
